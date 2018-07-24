@@ -127,7 +127,7 @@ Result:
 
 It is common place in an application to hardcode element names and attribute names, so this bug is not very likely to be exploitable. However, if an attacker somehow can inject whatever she wants on element and attribute names, she can possibly control the whole content of the file.
 
-Thanks to [@FilipJirsak](https://github.com/FilipJirsak) for the quick response and release of the fixed version. Version 2.1.1 and above are fixed and do not have have the issue anymore.
+Thanks to [@FilipJirsak](https://github.com/FilipJirsak) for the quick response and release of the fixed version. Version 2.1.1 and above are fixed and do not have have the issue anymore. Versions below 2.1.1, including the legacy versions ( < 1.6) are also vulnerable.
 
 ## References
 
