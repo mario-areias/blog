@@ -1,8 +1,8 @@
 +++
 title = "XML Injection in dom4j library"
 description = "Brief summary of a vulnerabitity on dom4j by inject XML on element and attribute names"
-date = 2018-07-21T22:15:43+10:00
-draft = true
+date = 2018-07-24T22:15:43+10:00
+draft = false
 toc = false
 categories = ["breaking"]
 tags = ["xml", "cve", "injection"]
@@ -10,7 +10,7 @@ tags = ["xml", "cve", "injection"]
 
 [dom4j](https://dom4j.github.io/) is a well known java library to process and generate XML files.
 
-In version [2.1.1](https://github.com/dom4j/dom4j/releases/tag/version-2.1.1) they fixed an issue regarding a [XML injection on the element and attribute names](https://github.com/dom4j/dom4j/issues/48).
+In version [2.1.1](https://github.com/dom4j/dom4j/releases/tag/version-2.1.1) they fixed an issue regarding a [XML injection on element and attribute names](https://github.com/dom4j/dom4j/issues/48).
 
 Prior to this version, the values of the elements were properly sanitized, but not the element itself. Same for attribute names. Let me show an example with a test
 
@@ -30,7 +30,6 @@ Prior to this version, the values of the elements were properly sanitized, but n
                 .addAttribute("name", "Bob")
                 .addAttribute("location", "US")
                 .addText("Bob McWhirter");
-
 
         writeFile(document);
 
@@ -126,7 +125,7 @@ Result:
 </root>
 {{< / highlight >}}
 
-It is common place in an application to hardcode element names and attribute names, so this bug is not very likely to be exploitable. However, if an attacker somehow can inject any inputs on element and attribute names, she can control how the file will be generated. 
+It is common place in an application to hardcode element names and attribute names, so this bug is not very likely to be exploitable. However, if an attacker somehow can inject whatever she wants on element and attribute names, she can possibly control the whole content of the file.
 
 Thanks to [@FilipJirsak](https://github.com/FilipJirsak) for the quick response and release of the fixed version. Version 2.1.1 and above are fixed and do not have have the issue anymore.
 
