@@ -12,6 +12,8 @@ tags = ["xml", "cve", "injection"]
 
 In version [2.1.1](https://github.com/dom4j/dom4j/releases/tag/version-2.1.1) they fixed an issue regarding a [XML injection on element and attribute names](https://github.com/dom4j/dom4j/issues/48).
 
+<!--more-->
+
 Prior to this version, the values of the elements were properly sanitized, but not the element itself. Same for attribute names. Let me show an example with a test
 
 {{< highlight java "linenos=inline,hl_lines=6 8 20" >}}
