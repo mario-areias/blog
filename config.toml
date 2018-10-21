@@ -18,10 +18,10 @@ disqusShortname = "" # Optional, add Disqus shortname for comments
   identifier = "about"
   url = "/page/about"
 [[menu.main]]
-  name = "Presentations"
+  name = "My Talks"
   weight = 2
-  identifier = "presentations"
-  url = "/page/presentations"
+  identifier = "talks"
+  url = "/page/talks"
 [[menu.main]]
   name = "Categories"
   weight = 3
