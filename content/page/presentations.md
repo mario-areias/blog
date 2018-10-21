@@ -7,4 +7,5 @@ draft = false
 **My talks**
 
 
-- Talk presented at the DevSecOps meetup in Sydney (Aug/2018) https://slides.com/marioareias/left_the_right_direction/#/
+- Talk presented at the DevSecOps meetup in Sydney (Aug/2018) and AppSecDay (October/2018) https://slides.com/marioareias/left_the_right_direction/#/
+
