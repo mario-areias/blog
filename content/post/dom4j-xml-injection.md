@@ -8,6 +8,8 @@ categories = ["breaking"]
 tags = ["xml", "cve", "injection"]
 +++
 
+> **Update**: CVE created [CVE-2018-1000632](https://nvd.nist.gov/vuln/detail/CVE-2018-1000632)
+
 [dom4j](https://dom4j.github.io/) is a well known java library to process and generate XML files.
 
 In version [2.1.1](https://github.com/dom4j/dom4j/releases/tag/version-2.1.1) they fixed an issue regarding a [XML injection on element and attribute names](https://github.com/dom4j/dom4j/issues/48).
