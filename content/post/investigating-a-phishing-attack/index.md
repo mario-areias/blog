@@ -6,9 +6,6 @@ draft = false
 toc = false
 categories = ["breaking"]
 tags = ["investigation", "phishing", "OSINT"]
-images = [
-  "https://source.unsplash.com/collection/983219/1600x900"
-] # overrides the site-wide open graph image
 +++
 
 A friend of mine has received this message recently:
