@@ -8,7 +8,7 @@ googleAnalytics = "" # Optional, add tracking Id for analytics
 disqusShortname = "" # Optional, add Disqus shortname for comments
 
 [params]
-  description = "Adventures in AppSec" 
+  description = "Adventures in AppSec"
 
 [menu]
 
