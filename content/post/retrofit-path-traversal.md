@@ -7,6 +7,8 @@ categories = ["breaking"]
 tags = ["path traversal", "cve", "injection"]
 +++
 
+> **Update**: CVE created [CVE-2018-1000850](https://nvd.nist.gov/vuln/detail/CVE-2018-1000850). For some reason, the wording on the CVE is quite confusing. That is not what I submitted. Hope they fix it soon.
+
 [Retrofit](https://github.com/square/retrofit/) is a type-safe HTTP client for Android and Java developed by Square, Inc. It is a very popular library with over 30k starts in Github and more than 120 contributors.
 
 I found a path traversal vulnerability when using `encoded=true` on `@Path` parameters. Below is an unit test reproducing the issue. This test was added on `RequestFactoryTest` class (it is not upstream though).
