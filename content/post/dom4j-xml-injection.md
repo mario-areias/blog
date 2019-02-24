@@ -1,6 +1,6 @@
 +++
 title = "XML Injection in dom4j library"
-description = "Brief summary of a vulnerabitity on dom4j by inject XML on element and attribute names"
+description = "Brief summary of a vulnerability on dom4j by inject XML on element and attribute names"
 date = 2018-07-24T13:15:43+10:00
 draft = false
 toc = false

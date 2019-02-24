@@ -22,7 +22,7 @@ First I started with some OSINT by analysing the domain name:
 
 ![Results of the command: whois accountactivate.info](images/whois-accountactivate.png)
 
-Another sign this is a scam: The domain was created pretty recently and the DNS servers are from Russia (which is weird considering suncorp is a Australia bank).
+Another sign this is a scam: The domain was created pretty recently and the DNS servers are from Russia (which is weird considering Suncorp is a Australia bank).
 
 Then I looked for DNS records using `dig` command to look at the DNS records.
 
