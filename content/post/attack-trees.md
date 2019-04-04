@@ -1,7 +1,7 @@
 +++
 title = "Attack Trees, Agile and Threat Modeling"
 date = 2019-02-22T20:47:42+10:00
-draft = false
+draft = true
 toc = false
 categories = ["building"]
 tags = ["appsec","threat-modeling","attack-trees"]
