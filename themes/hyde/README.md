@@ -11,6 +11,7 @@ It pairs a prominent sidebar with uncomplicated content.
 - [Installation](#installation)
 - [Options](#options)
   - [Sidebar menu](#sidebar-menu)
+  - [Sidebar description](#sidebar-description)
   - [Sticky sidebar content](#sticky-sidebar-content)
   - [Themes](#themes)
   - [Reverse layout](#reverse-layout)
@@ -52,7 +53,49 @@ Hyde includes some customizable options, typically applied via classes on the `<
 
 ### Sidebar menu
 
-Create a list of nav links in the sidebar by assigning "menu=main" in the front matter.
+Create a list of nav links in the sidebar by assigning "menu=main" in the front matter, like so:
+
+**TOML**
+```toml
+theme = "hyde"
+
+[Menus]
+  main = [
+      {Name = "Github", URL = "https://github.com/username/"},
+      {Name = "LinkedIn", URL = "https://www.linkedin.com/in/username/"}
+  ]
+```
+
+**YAML**
+```yaml
+theme: "hyde"
+
+Menus:
+  main:
+    - Name: "Github"
+      URL: "https://github.com/username/"
+    - Name: "LinkedIn"
+      URL: "https://www.linkedin.com/in/username/"
+```
+
+### Sidebar description
+Customise the describe of your page using `description`, like so:
+
+**TOML**
+```toml
+theme = "hyde"
+
+[params]
+  description = "Your custom description"
+```
+
+**YAML**
+```yaml
+theme: "hyde"
+
+params:
+  description = "Your custom description"
+```
 
 
 ### Sticky sidebar content
