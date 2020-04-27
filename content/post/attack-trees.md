@@ -7,17 +7,20 @@ categories = ["building"]
 tags = ["appsec","threat-modeling","attack-trees"]
 +++
 
-Threat models are one of the most hard, dry and controverse topics on InfoSec. I have been using Attack Trees in Agile Environment with a great degree of success. Threat Models when done right can really bring value to development teams. However, they easily go very wrong making everyone in the process frustrated. I believe there are two reasons why Threat Modeling is so hard. 
+Threat models are one of the hardest, driest and most controverse topics on InfoSec. When done right, they can really bring value to development teams. However, they easily go very wrong making everyone in the process frustrated - and we know it happens very often.
 
-First reason: it is really hard to balance security X delivery. Too much security and nothing gets done. Too much delivery and we are shipping very insecure products. Get that balance correct is an eternal journey and the foundation of any security program.
+I believe there are two reasons why Threat Modelings are so hard.
 
-Second reason: we, as industry, haven't figure out a good way to do threat modeling yet. We do have many different ways to do it, but there is no silver bullet. It is still a very immature part of InfoSec and there are still lots of discovery on that field.
+First reason: it is really hard to balance security vs feature delivery. Too much security and nothing gets done; too much delivery and we are shipping nice but very insecure products. Getting that balance right is an eternal journey and the foundation of any good security program.
 
+Second reason: we, as industry, haven't figure out a good way to do threat modeling yet with the new agile methodologies. We do have many different ways to do it, but there is no silver bullet. It is still a very immature part of InfoSec and there are still lots of discovery on that field.
+
+I have been using Attack Trees in Agile Environments, I can say that we've been reasonably successful.
 I have no ambition to solve the problem of Threat Modeling for our industry, but I can share what I have been using in the last year or so. It is been working very well for us, so hopefully it might be useful for some people too.
 
 # Principles
 
-Some time last year, we have decided to revamp the way we do threat model. We came up with a set of principles that really help drive us in a better outcome.
+Some time last year, we have decided to revamp the way we do threat modeling. We came up with a set of principles that really help drive us in a better outcome.
 
 ## Focus on the developers
 
@@ -25,9 +28,9 @@ Developers are the core of any development team. They build, fix and mitigate ri
 
 ## Security Teams are involved, but are not responsible
 
-In today's world we hear a lot of "you build it, you run it". More recently people are adding "you secure it". Security is a responsibility of development teams. Security people are experts and advisors. They educate, consult and help identify/mitigate risks. Threat models should reflect that. Security people are involved, of course, but ultimately they are consultants. 
+In today's world we hear a lot of "you build it, you run it". More recently people are adding "you secure it". Security is a responsibility of development teams. Security people are experts and advisors. They educate, consult and help identify/mitigate risks. Threat models should reflect that. Security people are involved, of course, but ultimately they are consultants.
 
-## Find balance of risk x time
+## Find balance of risk vs time
 
 Development teams have multiple, competing priorities at all times. Some of the priorities include security, of course. Finding the right balance of risk mitigation and disruption of developers's time is paramount to the success of Threat Modeling. Critical services are expected to have a more comprehensive and updated Threat Modeling. Low risk services do not need the same level of time investment.
 
@@ -37,13 +40,13 @@ Before I dive in what we are doing, I want to discuss what we are NOT doing.
 
 ## STRIDE
 
-STRIDE is one of the most popular ways to do threat modeling. It is recommended by specialists and amateurs alike. Yet, we have chose NOT to do it. The reason being, in my opinion, STRIDE is focused to be driven and consumed by security people (which violates our first principle). It uses terms like Repudiation, Spoofing, Tampering. These are not terms all developers are familiar with. Also, at the end of the day, is mostly a checklist of potential attacks against a system. It is not a fun or challenge exercise.
+STRIDE is one of the most popular ways to do threat modeling. It is recommended by specialists and amateurs alike. Yet, we have chose NOT to do it. The reason being, in my opinion, STRIDE is focused to be driven and consumed by security people (which violates our first principle). It uses terms like Repudiation, Spoofing, Tampering. These are not terms all developers are familiar with. Also, at the end of the day, is mostly a checklist of potential attacks against a system. It is not a fun or challenging exercise.
 
 ## Automated Threat Modeling
 
-I watched a few talks about how to automate threat modeling. I really put some effort into understand that and see how would work at scale. I don't think it would though. For two reasons mostly: 
+I watched a few talks about how to automate threat modeling. I really put some effort into understand that and see how would work at scale. I don't think it would though. For two reasons mostly:
 
-1) There is no easy to automate threats. Depending on the complexity a threat can require multiple layers of code to get done properly. Any automation that is too complex, it is quite prone to get flaky. This, at scale, is a recipe to get big, slow running tests running that provide little to no value. 
+1) There is no easy to automate threats. Depending on the complexity a threat can require multiple layers of code to get done properly. Any automation that is too complex, it is quite prone to get flaky. This, at scale, is a recipe to get big, slow running tests running that provide little to no value.
 
 2) In my mind, Threat Modeling is like architecture. One does not simply automate architecture. Architecture requires expertise, domain knowledge and a fair amount of thinking to be reasonably good. Threat modeling is the same, it only shines when the right people are involved, with the right amount of effort in place. One can't just simply automate thinking and a good conversation. Not yet anyway.
 
@@ -60,13 +63,11 @@ So what are we doing then? We are using attack trees. There are a few things I l
 In summary, attack trees make developers think about security in their own terms. I believe it is a lot more powerful than go through a checklist of terms they most likely are not familiar with. The security team role in this process is to ask the hard questions and make sure all the basic controls are in place. As well as challenge developers go above and beyond, identifying different risks and bring general security expertise to the table.
 
 
-
-
 ## How to run a session
 
 ### Get the right people involved
 
-This is step 0. Without the right people in the room, there is no chance to get a positive outcome. This most likely involves getting the whole development team in the room, the security people more involved with that team and whatever experts are necessary to be there. For example, if a product is going to the cloud and the development team does not have this expertise, bring in somebody who does it. I can't emphasize this enough. The session is only as good as the people in the room. Having said that, limit the room to about 10 people in total. More people than that will make the facilitator's life quite hard. 
+This is step 0. Without the right people in the room, there is no chance to get a positive outcome. This most likely involves getting the whole development team in the room, the security people more involved with that team and whatever experts are necessary to be there. For example, if a product is going to the cloud and the development team does not have this expertise, bring in somebody who does it. I can't emphasize this enough. The session is only as good as the people in the room. Having said that, limit the room to about 10 people in total. More people than that will make the facilitator's life quite hard.
 
 If the right people are not involved or in the room, it is better to cancel the session altogether and do it another time.
 
@@ -100,7 +101,7 @@ Now wrap up the discussion to capture points of concern, further investigation a
 
 ## When to run a session
 
-When a big business feature is about to start to be implemented. This is intentionally a generic answer. Some companies call those features Epics, others just group them as stories. Regardless what they are called, threat models only make sense for not so simple features and not so complex too. A bug fix or change on the UI will hardly be of significance from a threat model perspective. Adding 2FA to your application definitely is! Get all your services on prem and migrate them to the cloud is too complex for one session! Break that up and make multiple sessions instead.
+When a big business feature is about to start to be implemented. This is intentionally a generic answer. Some companies call those features Epics, others just group them as stories. Regardless what they are called, threat models only make sense for not so simple features and not so complex too. A bug fix or change on the UI will hardly be of significance from a threat model perspective. Adding 2FA to your application definitely is! Get all your services on prem and migrate them to the cloud is too complex for one session. Break that up and make multiple sessions instead.
 
 It is really hard to define a size here, it is very contextual based. However, after running one or two sessions will be easy to identify the ideal size of a feature to be threat modeled. Also, make sure you run that BEFORE any code is written but AFTER some architecture has been decided. It is a sweet spot where is easy to change architecture if any risks are identified and not too early where the architecture is likely to change a lot.
 
@@ -113,7 +114,7 @@ As discussed already, facilitation and scope are paramount for these sessions. I
 
 ## Measuring benefits
 
-Some benefits are easy to measure. If threat models are done correctly, less security issues should be shipped to production and less pen testing findings should come up in the reports. Some other benefits are not easily measured. For example, developers talking more about security, researching topics and asking for advice more often. That really helps and warms my heart every time it happens. However, this is quite hard to measure. Make the organisation think more about security is really hard goal to achieve. But I really believe that very well facilitated threat model sessions are one of the ways to get there.
+Some benefits are easy to measure. If threat models are done correctly, less security issues should be shipped to production and less pen testing findings should come up in the reports. Some other benefits are not easily measured. For example, developers talking more about security, researching topics and asking for advice more often. That really helps and warms my heart every time it happens. However, this is quite hard to measure. Make the organisation think more about security is a really hard goal to achieve. But I really believe that very well facilitated threat model sessions is one of the ways to get there.
 
 ## It is a conversation starter
 
@@ -127,5 +128,11 @@ Months and months after we have implemented our way to do threat modeling, I saw
 https://thoughtworksinc.github.io/sensible-security-conversations/materials/Sensible_Agile_Threat_Modelling_Workshop_Guide.pdf
 
 # References
+
+My talk at Pycon about Threat Modeling the Death Star:
+{{< youtube kYD5OrzsvMI >}}
+
+Agile Application Security book is also a good one for Threat Modeling and AppSec in general!
+https://www.goodreads.com/book/show/29895091-agile-application-security
 
 
