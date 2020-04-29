@@ -10,9 +10,15 @@
 
   {{ if .IsHome -}}
   <title>{{ .Site.Title }}</title>
+  <meta property="twitter:title" content="{{ .Title }}">
   {{- else -}}
   <title>{{ .Title }} &middot; {{ .Site.Title }}</title>
+  <meta property="twitter:title" content="{{ .Title }} &middot; {{ .Site.Title }}">
   {{- end }}
+
+  <meta name="twitter:card" content="summary">
+  <meta property="og:site_name" content="I hack to protect">
+  {{ with .Description }}<meta property="og:description" content="{{ . }}">{{ end }}
 
   <!-- CSS -->
   <link type="text/css" rel="stylesheet" href="{{ .Site.BaseURL }}css/print.css" media="print">

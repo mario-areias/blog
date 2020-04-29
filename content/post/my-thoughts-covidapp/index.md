@@ -1,6 +1,7 @@
 +++
 title = "My thoughts on COVIDSafe app"
 date = 2020-04-28T8:20:00+10:00
+description = "Another analysis of COVIDSafe app, going through a few thoughts and describing weaknesses"
 draft = false
 toc = false
 categories = ["breaking"]
