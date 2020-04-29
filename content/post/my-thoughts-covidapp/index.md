@@ -24,17 +24,17 @@ For now, that's not an option we are considering in Australia so we are digging 
 
 Be careful with any analysis regarding this app (including mine!), we are all people working in fulltime jobs, trying to do something good in this pandemic. There are many people out there trying to help and working together to make this app as safe and sound as possible. There are twitter threads, blog posts and even a discord server full of people doing reverse engineering. You can find a good summary of their [findings here](https://docs.google.com/document/d/17GuApb1fG3Bn0_DVgDQgrtnd_QO3foBl7NVb8vaWeKc/preview#).
 
-Also, be careful with hot takes out there, being from CEOs or influencers, they don't have expertise to say if the app is safe or not ([halo effect](https://en.wikipedia.org/wiki/Halo_effect) is a powerful thing). Look for advice from experts who _actually_ spent time analising the app and look for evidence.
+Also, be careful with hot takes out there, being from CEOs or influencer who don't have expertise to say if the app is safe or not ([halo effect](https://en.wikipedia.org/wiki/Halo_effect) is a powerful thing). Look for advice from experts who _actually_ spent time analising the app and look for evidence.
 
 ## My thoughts
 
-First, I want to address the fact that some people are concerned about the privacy implications of the app. I strongly believe this is a valid concern, story is full of examples of what happen when we trust the government blindly.
+First, I want to address the fact that some people are concerned about the privacy implications of the app. I strong believe this is a valid concern, story is full of examples of what happens when we trust the Government blindly.
 
-The narrative that some people are saying "but you give your data to Google and Facebook" is a bad one, particularly coming from security professionals. Different people have different threat models and some of them include Government. Activists, politicians and even journalists have been targeted by Governments before. Education and evidence is the best way to convince people to install, shaming them is not, we can do better. 
+The narrative that some people are saying "but you give your data to Google and Facebook" is a bad one, particularly coming from security professionals. Different people have different threat models and some of them include Government. Activists, politicians and even journalists have been targeted by Governments before. Education and evidence is the best way to ease people concerns and as security professional that should be our approach, anything related to 
 
-Having said that, I spent around 6-8 hours looking into COVIDSAfe Android App (no, that's enough for a deep analysis) and I didn't see any big problems into it, at least, not for the users themselves. The app is far from be completely private or without problems, but it does take privacy seriously to an certain extent. 
+Having said that, I spent around 6-8 hours looking into COVIDSafe Android App (no, that's enough for a deep analysis) and I didn't see any big problems into it, at least, not for the users themselves. The app is far from be completely private or without problems, but it does take privacy seriously to an certain extent. 
 
-That doesn't mean there are no shortcomings, there are and I elaborate on them in the next section (which will be a bit more technical), including lack of transparency in the design and implementation of this app. 
+That doesn't mean there are no shortcomings, they exist and I elaborate on them in the next section (which will be a bit more technical), including lack of transparency in the design and implementation of this app. 
 
 But I appreciate the work done here, don't forget the people developing this app are also in the pandemic and have their own problems too. They did the best they could in a tight schedule and difficult situation. My intent with this post is to help highlight possible problems (and solutions) and to make COVIDSafe even better.
 
@@ -44,7 +44,7 @@ But I appreciate the work done here, don't forget the people developing this app
 
 COVIDSafe is simple, but it has many moving parts, including servers in AWS, heavily bluetooth usage and upload of personal information (such as phone numbers).
 
-I have been digging deep into the [Android App](https://github.com/ghuntley/COVIDSafe_1.0.11.apk), but there are other source codes to look at. The opentrace community [has released their code](https://github.com/opentrace-community/opentrace-android), they are a open source implementation of the protocol used by COVIDSafe. Also, there is a white paper wrote by BlueTrace (the company who created the protocol) that you can find [here](https://bluetrace.io/static/bluetrace_whitepaper-938063656596c104632def383eb33b3c.pdf).
+I have been digging deep into the [Android App](https://github.com/ghuntley/COVIDSafe_1.0.11.apk), but there are other source codes to look at. The opentrace community (the open source implementation of the protocol that COVIDSafe uses) [has released their code](https://github.com/opentrace-community/opentrace-android). Also, there is a white paper wrote by BlueTrace (the company who created the protocol) that you can find [here](https://bluetrace.io/static/bluetrace_whitepaper-938063656596c104632def383eb33b3c.pdf).
 
 By comparing the opentrace code with the COVIDSafe codebase I noticed they used different protocol versions. Opentrace source code (and the whitepaper) use the version `2` of the protocol, while COVIDSafe is using version `1`.
 
@@ -52,7 +52,7 @@ By comparing the opentrace code with the COVIDSafe codebase I noticed they used 
 
 From looking at the app, is not really trivial to figure out what is the difference in the protocols and I couldn't find any papers regarding the version `1`.
 
-The biggest problem I see for this app is the quality of the data stored in the app (and eventually uploaded to the cloud). One of the privacy protections COVIDSafe implements is the generation of a `tempId` (a temporary ID that is generated in the server to avoid user tracking), according to the whitepaper `tempId` is the conjuction of `UserID`, `start time` and `expire time` (encrypted in the same blob) plus IV and Authentication tag.
+The biggest problem I managed to find is the quality of the data stored in the app (and eventually uploaded to the cloud). One of the privacy protections COVIDSafe implements is the generation of a `tempId` (a temporary ID that is generated in the server to avoid user tracking), according to the whitepaper `tempId` is the conjuction of `UserID`, `start time` and `expire time` (encrypted in the same blob) plus IV and Authentication tag.
 
 The Android app is clueless about this format, since the server encrypts this information using a symetrical algorithm `AES-256-GCM`, the app can't verify the `tempId` authenticity and therefore its trustworthiness. From the app perspective, `tempId` is just a bunch of random characters. The fact the bluetooh handshake has no authentication - besides checking a hardcoded UUID - makes replay attack very easy to pull out.
 
@@ -68,7 +68,9 @@ The app has other problems, of course, but the ones above are the ones who I thi
 
 ## Possible improvements
 
-There are ways to improve this protocol: using asymmetric encryption would enable clients to validate if the `tempId` is valid and mitigating the risk to accept _anything_ as `tempId`. To be frank, in the whitepaper it says the BlueTrace developers did play around with asymmetric encryption but they had performance issues on the devices. Definitely a valid concern, but I think asymmetric encryption would mitigate a whole class of attacks and it is worth to look into even if that compromises performance a bit.
+There are ways to improve this protocol: using asymmetric encryption would enable clients to validate if the `tempId` is valid and mitigating the risk to accept _anything_ as `tempId`. To be frank, in the whitepaper it says the BlueTrace developers did play around with asymmetric encryption but they had performance issues on the devices. The approach they have tried is quite good, but they could improve by using something more simple. 
+
+The server could control a keypair and make the `private` key confidential (as it is always the case), then the server could sign the `tempId`s using the private key and the Android app could verify using the `public` key. That would avoid the problem for the apps to accept anything as `tempId`. This approach could work on top of the current approach, so in order to generate a valid `tempId` an attacker would require the symetric key _and_ the private key from the keypair. Both keys could be managed differently and even being accessible in different services. It would improve the security in depth posture. 
 
 Generate `tempIds` more often would reduce the risk of replay attacks, the whitepaper suggests to generate them every 15 minutes, which seems a reasonable option. COVIDSafe is generating every 2 hours and that grealy increases the risk for replay attacks, I would advise to follow the recommendation and use 15 minutes instead.
 
